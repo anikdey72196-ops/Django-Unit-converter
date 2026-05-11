@@ -1,0 +1,157 @@
+<html lang="en"><head></head><body class="bg-brand-light text-slate-800 font-sans antialiased">```html
+
+
+
+  <meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unit Converter Suite - Quickly Convert Units</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#f8fafc',
+              dark: '#1e293b',
+              accent: '#3b82f6',
+            }
+          },
+          backgroundImage: {
+            'dot-pattern': 'radial-gradient(#e5e7eb 1px, transparent 1px)',
+          }
+        }
+      }
+    }
+  </script>
+
+<style data-purpose="background-patterns">
+    /* Subtle dot pattern for the hero section background */
+    .hero-dots {
+      background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+    }
+    
+    /* Soft shadow for cards to match the design */
+    .card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+<!-- END: Custom Styles -->
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-gray-100" data-purpose="site-navigation">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo and Brand Name -->
+<div class="flex items-center space-x-3">
+<div class="bg-blue-600 p-2 rounded-md">
+<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="text-xl font-bold text-slate-900 tracking-tight">Unit Converter Suite</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+<a class="text-blue-600 hover:text-blue-700" href="#">Home</a>
+<a class="hover:text-slate-900" href="#">All Tools</a>
+<a class="hover:text-slate-900" href="#">About</a>
+<a class="hover:text-slate-900" href="#">Contact</a>
+</nav>
+<!-- Mobile Menu Toggle (Simplified) -->
+<div class="md:hidden">
+<button class="text-slate-500 hover:text-slate-600" type="button">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: HeroSection -->
+<section class="relative pt-16 pb-12 overflow-hidden" data-purpose="hero-banner">
+<!-- Subtle dot background for visual texture -->
+<div class="absolute inset-0 hero-dots opacity-30 pointer-events-none"></div>
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
+        Quickly Convert Units Across Dimensions
+      </h1>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: ConverterGrid -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16" data-purpose="main-tools-list">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card: Length Converter -->
+<div class="bg-white rounded-3xl border border-gray-100 card-shadow p-10 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
+<div class="w-48 h-48 mb-8 flex items-center justify-center">
+<img alt="Length Converter Illustration" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvMDQEXcyhkUi_pKby48pQ0SaIcjgoxlQy-AWrQUSjFcaWM1VoruVUIVwyi5yX-IR7jxgAFqRNvCWSw-J-ZqeUSuOjyod-2Qih_jQ6m2wi_A1xfBnGkhTq5X5DR24o3Km65DO0SGvc4t7jbn3U3Q_z_R8MT6Rw_xqNYpEYxeEuIMFsukwgP5z_B3HLtC5m_0H3fLgJPPDNpS9WMx0_T53YBh9QOO4cYr7V7YQPsgzDgTABJNAi25K-_RSYZfF4r390jKZBbOV_kkg"/>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 mb-4">Length Converter</h2>
+<p class="text-slate-500 text-sm leading-relaxed mb-10 flex-grow">
+          Convert between metric and imperial length units like meters, feet, inches, and miles.
+        </p>
+<a class="w-full py-4 px-6 border border-slate-200 rounded-xl text-slate-900 font-semibold text-sm hover:bg-slate-50 transition-colors" href="#">
+          Go to Tool
+        </a>
+</div>
+<!-- Card: Weight Converter -->
+<div class="bg-white rounded-3xl border border-gray-100 card-shadow p-10 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
+<div class="w-48 h-48 mb-8 flex items-center justify-center">
+<img alt="Weight Converter Illustration" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkBGOH25Ws2cp5MSScGzJN6-oeQ_HUYgYXE4nkyJC3JvnlH5niO25KrokGkNhqoUR5sMc_lxwBpzVEKW0A1-2HDMSFJ3HWUkcWDlD36UfeiArjLqi75BLps0JghZMesxcK0f9HCNDh9BMbarcteoC5Ng3NXrY47lFy1jxiYaPBMcRVOTXUY90c9FviCY35HR61D75gvrCEKTznLaCvXglAEfcAZdM4chOLC84jvfwNXixsysNjPyvHZCd43Ps0JJiE0XDs3WgCOTY"/>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 mb-4">Weight Converter</h2>
+<p class="text-slate-500 text-sm leading-relaxed mb-10 flex-grow">
+          Easily switch between grams, kilograms, pounds, ounces, and other weight measures.
+        </p>
+<a class="w-full py-4 px-6 border border-slate-200 rounded-xl text-slate-900 font-semibold text-sm hover:bg-slate-50 transition-colors" href="#">
+          Go to Tool
+        </a>
+</div>
+<!-- Card: Temperature Converter -->
+<div class="bg-white rounded-3xl border border-gray-100 card-shadow p-10 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
+<div class="w-48 h-48 mb-8 flex items-center justify-center">
+<img alt="Temperature Converter Illustration" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk7SMllQRI8Cb6kJIBEz-x0mxy6-gR_dC7UpjBdRNImyh9GOfXPTV03eiVq3zN9lg9cwHTgy88B2TkKYPZGqrD_6equdgiI0RUKL-uejcZMeR6nP_LiCUAKJAFzM0xo6rXxXG9pnWGy7A3TTseskB-mtU4Kn71qs14VnG9Fb96zlpQOcNdRcCxm0L7uqhSCZp6Wx48vitV6y45aTOCuv6vmPCVVBH786PIVYN4RHqN4l5b66smM5vSeks5HYK1Ssu0ybhJ2pQoE4c"/>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 mb-4">Temperature Converter</h2>
+<p class="text-slate-500 text-sm leading-relaxed mb-10 flex-grow">
+          Convert degrees between Celsius, Fahrenheit, and Kelvin scales instantly.
+        </p>
+<a class="w-full py-4 px-6 border border-slate-200 rounded-xl text-slate-900 font-semibold text-sm hover:bg-slate-50 transition-colors" href="#">
+          Go to Tool
+        </a>
+</div>
+</div>
+</main>
+<!-- END: ConverterGrid -->
+<!-- BEGIN: PopularConversions -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 text-center" data-purpose="popular-links">
+<h3 class="text-xl font-bold text-slate-900 mb-6">Popular Conversions</h3>
+<div class="flex flex-wrap justify-center gap-x-10 gap-y-4 text-sm font-medium text-slate-600">
+<a class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2" href="#">Meters to Feet</a>
+<a class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2" href="#">Kilograms to Pounds</a>
+<a class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2" href="#">Celsius to Fahrenheit</a>
+</div>
+</section>
+<!-- END: PopularConversions -->
+<!-- BEGIN: Footer -->
+<footer class="border-t border-gray-200 bg-white py-10" data-purpose="page-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+<!-- Copyright Info -->
+<div class="mb-4 md:mb-0">
+          © 2022 Converter Unit. All rights reserved.
+        </div>
+<!-- Footer Links -->
+<div class="flex space-x-6 font-medium">
+<a class="hover:text-slate-900" href="#">Privacy Policy</a>
+<a class="hover:text-slate-900" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body>
+</html>
