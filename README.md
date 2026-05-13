@@ -1,6 +1,6 @@
 # Django Unit Converter
 
-**Repository:** [https://github.com/anikdey72196-ops/Unit-converter.git]
+**Repository:** [https://github.com/anikdey72196-ops/Django-Unit-converter]
 
 A modern, fast, and beautifully designed single-page Unit Converter built with Django and Vanilla JavaScript.
 
