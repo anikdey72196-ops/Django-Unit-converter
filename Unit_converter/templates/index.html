@@ -1,157 +1,652 @@
-<html lang="en"><head></head><body class="bg-brand-light text-slate-800 font-sans antialiased">```html
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Unit Converter Suite - Quickly Convert Units</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Unit Converter Suite - Quickly Convert Units</title>
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+          },
           colors: {
             brand: {
               light: '#f8fafc',
-              dark: '#1e293b',
-              accent: '#3b82f6',
+              dark: '#0f172a',
+              accent: '#2563eb',
             }
           },
           backgroundImage: {
-            'dot-pattern': 'radial-gradient(#e5e7eb 1px, transparent 1px)',
+            'dot-pattern': 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
           }
         }
       }
     }
   </script>
 
-<style data-purpose="background-patterns">
-    /* Subtle dot pattern for the hero section background */
+  <style>
+    /* Premium typography and custom dot grid background pattern */
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
     .hero-dots {
       background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
       background-size: 24px 24px;
     }
     
-    /* Soft shadow for cards to match the design */
+    /* Soft premium shadows matching professional glassmorphism */
     .card-shadow {
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05), 0 15px 20px -20px rgba(15, 23, 42, 0.05);
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* Rotation keyframe animation for Swap button */
+    .rotate-effect {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .rotate-active {
+      transform: rotate(180deg);
     }
   </style>
-<!-- END: Custom Styles -->
+</head>
+<body class="bg-brand-light text-slate-800 antialiased bg-dot-pattern">
+
 <!-- BEGIN: MainHeader -->
-<header class="bg-white border-b border-gray-100" data-purpose="site-navigation">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between items-center h-20">
-<!-- Logo and Brand Name -->
-<div class="flex items-center space-x-3">
-<div class="bg-blue-600 p-2 rounded-md">
-<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<span class="text-xl font-bold text-slate-900 tracking-tight">Unit Converter Suite</span>
-</div>
-<!-- Navigation Links -->
-<nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-<a class="text-blue-600 hover:text-blue-700" href="#">Home</a>
-<a class="hover:text-slate-900" href="#">All Tools</a>
-<a class="hover:text-slate-900" href="#">About</a>
-<a class="hover:text-slate-900" href="#">Contact</a>
-</nav>
-<!-- Mobile Menu Toggle (Simplified) -->
-<div class="md:hidden">
-<button class="text-slate-500 hover:text-slate-600" type="button">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-</div>
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100" data-purpose="site-navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo and Brand Name -->
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <div class="bg-blue-600 p-2.5 rounded-xl shadow-lg shadow-blue-500/20 text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </div>
+        <span class="text-xl font-bold text-slate-900 tracking-tight">Unit Converter Suite</span>
+      </div>
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+        <a class="text-blue-600 hover:text-blue-700 transition-colors" href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Home</a>
+        <a class="hover:text-slate-900 transition-colors" href="#converter-section">Converter</a>
+        <a class="hover:text-slate-900 transition-colors" href="#tools-section">All Categories</a>
+        <a class="hover:text-slate-900 transition-colors" href="#" onclick="alert('Unit Converter Suite version 1.0. Developed with Django & Vanilla JS.'); return false;">About</a>
+      </nav>
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden">
+        <button class="text-slate-500 hover:text-slate-600 p-2" type="button" onclick="alert('Menu links: Home, Converter, Categories')">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </header>
 <!-- END: MainHeader -->
+
 <!-- BEGIN: HeroSection -->
-<section class="relative pt-16 pb-12 overflow-hidden" data-purpose="hero-banner">
-<!-- Subtle dot background for visual texture -->
-<div class="absolute inset-0 hero-dots opacity-30 pointer-events-none"></div>
-<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-<h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
-        Quickly Convert Units Across Dimensions
-      </h1>
-</div>
+<section class="relative pt-16 pb-8 overflow-hidden" data-purpose="hero-banner">
+  <div class="absolute inset-0 hero-dots opacity-25 pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 mb-6 tracking-wide uppercase shadow-sm border border-blue-100">
+      ⚡ Client-Side calculations, zero delays
+    </span>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight mb-4 max-w-4xl mx-auto leading-tight">
+      Quickly Convert Units <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Across Dimensions</span>
+    </h1>
+    <p class="text-slate-500 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+      A beautiful, high-precision single-page suite to dynamically swap and calculate Length, Weight, and Temperature.
+    </p>
+  </div>
 </section>
 <!-- END: HeroSection -->
+
+<!-- BEGIN: InteractiveConverter -->
+<section id="converter-section" class="max-w-4xl mx-auto px-4 pb-16 relative z-10">
+  <div class="glass-effect rounded-[32px] border border-white/60 shadow-2xl p-6 sm:p-10 card-shadow transition-all duration-300">
+    
+    <!-- Category Navigation Tabs -->
+    <div class="flex flex-wrap p-1.5 bg-slate-100/80 rounded-2xl gap-1 mb-8" role="tablist">
+      <button id="tab-length" class="flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-semibold transition-all duration-200" onclick="switchCategory('length')">
+        <svg class="w-4.5 h-4.5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 9h16v6H4zM8 9v3M12 9v6M16 9v3"/>
+        </svg>
+        Length
+      </button>
+      <button id="tab-weight" class="flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-semibold transition-all duration-200" onclick="switchCategory('weight')">
+        <svg class="w-4.5 h-4.5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M6 8l-2 4h4l-2-4zm12 0l-2 4h4l-2-4zM3 12h18"/>
+        </svg>
+        Weight
+      </button>
+      <button id="tab-temperature" class="flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-semibold transition-all duration-200" onclick="switchCategory('temperature')">
+        <svg class="w-4.5 h-4.5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 14.5a3.5 3.5 0 11-4 0V4a2 2 0 114 0v10.5z"/>
+        </svg>
+        Temperature
+      </button>
+    </div>
+
+    <!-- Main Calculation Form Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-9 gap-6 items-center">
+      
+      <!-- Input Panel (From) -->
+      <div class="lg:col-span-4 bg-slate-50/80 border border-slate-100 rounded-2xl p-5 shadow-sm focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 transition-all duration-200">
+        <label for="from-value" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">From</label>
+        <div class="flex flex-col gap-3">
+          <input type="number" id="from-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none placeholder-slate-300" value="1" step="any" oninput="calculate()">
+          <select id="from-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+        </div>
+      </div>
+
+      <!-- Swap Action Column -->
+      <div class="lg:col-span-1 flex justify-center py-2 lg:py-0">
+        <button id="swap-btn" class="w-12 h-12 bg-white hover:bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center shadow-md text-slate-500 hover:text-blue-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 rotate-effect" onclick="swapUnits()">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 8V4m0 16l-4-4m4 4l4-4"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Output Panel (To) -->
+      <div class="lg:col-span-4 bg-blue-50/30 border border-blue-100/50 rounded-2xl p-5 shadow-sm focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 transition-all duration-200 relative group">
+        <label for="to-value" class="block text-xs font-bold uppercase tracking-wider text-blue-500 mb-2">To</label>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <input type="text" id="to-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none" readonly value="3.28084">
+            
+            <!-- Copy Action Button -->
+            <button id="copy-btn" class="p-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-500 hover:text-blue-600 shadow-sm transition-all hover:scale-105" title="Copy result to clipboard" onclick="copyResult()">
+              <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m-6 4h6m-6 4h6"/>
+              </svg>
+              <!-- Success Indicator Tooltip (Hidden initially) -->
+              <span id="copy-toast" class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2.5 py-1 bg-slate-900 text-white text-xs font-bold rounded shadow-lg opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap">Copied!</span>
+            </button>
+          </div>
+          <select id="to-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Formula / Scientific Explanation Block -->
+    <div id="formula-container" class="mt-8 p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between text-xs text-slate-500">
+      <div class="flex items-center space-x-2">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-200 text-slate-700 font-bold">i</span>
+        <span id="formula-text" class="font-medium">1 Meter (m) = 3.28084 Feet (ft)</span>
+      </div>
+      <span class="text-slate-400 italic font-mono hidden sm:inline" id="math-details">1 × 3.28084 = 3.28084</span>
+    </div>
+
+    <!-- Dynamic History Panel -->
+    <div class="mt-10 border-t border-slate-150 pt-8">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400">Recent Conversions</h4>
+        <button id="clear-history-btn" class="text-xs font-semibold text-slate-400 hover:text-red-500 transition-colors hidden" onclick="clearHistory()">Clear All</button>
+      </div>
+      <div id="history-empty" class="text-xs text-slate-400 italic py-2">
+        Your dynamic calculations history will be displayed here as you perform them.
+      </div>
+      <div id="history-list" class="flex flex-wrap gap-2.5 max-h-[160px] overflow-y-auto pr-1">
+        <!-- History Badges Inserted Dynamically -->
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- END: InteractiveConverter -->
+
 <!-- BEGIN: ConverterGrid -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16" data-purpose="main-tools-list">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Card: Length Converter -->
-<div class="bg-white rounded-3xl border border-gray-100 card-shadow p-10 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
-<div class="w-48 h-48 mb-8 flex items-center justify-center">
-<img alt="Length Converter Illustration" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvMDQEXcyhkUi_pKby48pQ0SaIcjgoxlQy-AWrQUSjFcaWM1VoruVUIVwyi5yX-IR7jxgAFqRNvCWSw-J-ZqeUSuOjyod-2Qih_jQ6m2wi_A1xfBnGkhTq5X5DR24o3Km65DO0SGvc4t7jbn3U3Q_z_R8MT6Rw_xqNYpEYxeEuIMFsukwgP5z_B3HLtC5m_0H3fLgJPPDNpS9WMx0_T53YBh9QOO4cYr7V7YQPsgzDgTABJNAi25K-_RSYZfF4r390jKZBbOV_kkg"/>
-</div>
-<h2 class="text-2xl font-bold text-slate-900 mb-4">Length Converter</h2>
-<p class="text-slate-500 text-sm leading-relaxed mb-10 flex-grow">
-          Convert between metric and imperial length units like meters, feet, inches, and miles.
-        </p>
-<a class="w-full py-4 px-6 border border-slate-200 rounded-xl text-slate-900 font-semibold text-sm hover:bg-slate-50 transition-colors" href="#">
-          Go to Tool
-        </a>
-</div>
-<!-- Card: Weight Converter -->
-<div class="bg-white rounded-3xl border border-gray-100 card-shadow p-10 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
-<div class="w-48 h-48 mb-8 flex items-center justify-center">
-<img alt="Weight Converter Illustration" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkBGOH25Ws2cp5MSScGzJN6-oeQ_HUYgYXE4nkyJC3JvnlH5niO25KrokGkNhqoUR5sMc_lxwBpzVEKW0A1-2HDMSFJ3HWUkcWDlD36UfeiArjLqi75BLps0JghZMesxcK0f9HCNDh9BMbarcteoC5Ng3NXrY47lFy1jxiYaPBMcRVOTXUY90c9FviCY35HR61D75gvrCEKTznLaCvXglAEfcAZdM4chOLC84jvfwNXixsysNjPyvHZCd43Ps0JJiE0XDs3WgCOTY"/>
-</div>
-<h2 class="text-2xl font-bold text-slate-900 mb-4">Weight Converter</h2>
-<p class="text-slate-500 text-sm leading-relaxed mb-10 flex-grow">
-          Easily switch between grams, kilograms, pounds, ounces, and other weight measures.
-        </p>
-<a class="w-full py-4 px-6 border border-slate-200 rounded-xl text-slate-900 font-semibold text-sm hover:bg-slate-50 transition-colors" href="#">
-          Go to Tool
-        </a>
-</div>
-<!-- Card: Temperature Converter -->
-<div class="bg-white rounded-3xl border border-gray-100 card-shadow p-10 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
-<div class="w-48 h-48 mb-8 flex items-center justify-center">
-<img alt="Temperature Converter Illustration" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk7SMllQRI8Cb6kJIBEz-x0mxy6-gR_dC7UpjBdRNImyh9GOfXPTV03eiVq3zN9lg9cwHTgy88B2TkKYPZGqrD_6equdgiI0RUKL-uejcZMeR6nP_LiCUAKJAFzM0xo6rXxXG9pnWGy7A3TTseskB-mtU4Kn71qs14VnG9Fb96zlpQOcNdRcCxm0L7uqhSCZp6Wx48vitV6y45aTOCuv6vmPCVVBH786PIVYN4RHqN4l5b66smM5vSeks5HYK1Ssu0ybhJ2pQoE4c"/>
-</div>
-<h2 class="text-2xl font-bold text-slate-900 mb-4">Temperature Converter</h2>
-<p class="text-slate-500 text-sm leading-relaxed mb-10 flex-grow">
-          Convert degrees between Celsius, Fahrenheit, and Kelvin scales instantly.
-        </p>
-<a class="w-full py-4 px-6 border border-slate-200 rounded-xl text-slate-900 font-semibold text-sm hover:bg-slate-50 transition-colors" href="#">
-          Go to Tool
-        </a>
-</div>
-</div>
+<main id="tools-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16" data-purpose="main-tools-list">
+  <div class="text-center mb-10">
+    <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Explore Categories</h3>
+    <p class="text-slate-500 text-sm mt-1">Click on "Go to Tool" to load any category instantly</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- Card: Length Converter -->
+    <div class="bg-white rounded-3xl border border-slate-100 card-shadow p-8 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
+      <div class="w-40 h-40 mb-6 flex items-center justify-center bg-blue-50/50 rounded-2xl p-4">
+        <img alt="Length Converter" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvMDQEXcyhkUi_pKby48pQ0SaIcjgoxlQy-AWrQUSjFcaWM1VoruVUIVwyi5yX-IR7jxgAFqRNvCWSw-J-ZqeUSuOjyod-2Qih_jQ6m2wi_A1xfBnGkhTq5X5DR24o3Km65DO0SGvc4t7jbn3U3Q_z_R8MT6Rw_xqNYpEYxeEuIMFsukwgP5z_B3HLtC5m_0H3fLgJPPDNpS9WMx0_T53YBh9QOO4cYr7V7YQPsgzDgTABJNAi25K-_RSYZfF4r390jKZBbOV_kkg"/>
+      </div>
+      <h2 class="text-xl font-bold text-slate-900 mb-2.5">Length Converter</h2>
+      <p class="text-slate-500 text-xs leading-relaxed mb-6 flex-grow">
+        Convert metric and imperial lengths: millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles.
+      </p>
+      <button class="w-full py-3.5 px-6 border border-slate-200 hover:border-blue-500 rounded-xl text-slate-700 hover:text-blue-600 font-semibold text-sm hover:bg-blue-50/20 transition-all duration-200 shadow-sm" onclick="triggerCategoryScroll('length')">
+        Go to Tool
+      </button>
+    </div>
+
+    <!-- Card: Weight Converter -->
+    <div class="bg-white rounded-3xl border border-slate-100 card-shadow p-8 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
+      <div class="w-40 h-40 mb-6 flex items-center justify-center bg-blue-50/50 rounded-2xl p-4">
+        <img alt="Weight Converter" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkBGOH25Ws2cp5MSScGzJN6-oeQ_HUYgYXE4nkyJC3JvnlH5niO25KrokGkNhqoUR5sMc_lxwBpzVEKW0A1-2HDMSFJ3HWUkcWDlD36UfeiArjLqi75BLps0JghZMesxcK0f9HCNDh9BMbarcteoC5Ng3NXrY47lFy1jxiYaPBMcRVOTXUY90c9FviCY35HR61D75gvrCEKTznLaCvXglAEfcAZdM4chOLC84jvfwNXixsysNjPyvHZCd43Ps0JJiE0XDs3WgCOTY"/>
+      </div>
+      <h2 class="text-xl font-bold text-slate-900 mb-2.5">Weight Converter</h2>
+      <p class="text-slate-500 text-xs leading-relaxed mb-6 flex-grow">
+        Easily switch between mass values: milligrams, grams, kilograms, ounces, pounds, and stones.
+      </p>
+      <button class="w-full py-3.5 px-6 border border-slate-200 hover:border-blue-500 rounded-xl text-slate-700 hover:text-blue-600 font-semibold text-sm hover:bg-blue-50/20 transition-all duration-200 shadow-sm" onclick="triggerCategoryScroll('weight')">
+        Go to Tool
+      </button>
+    </div>
+
+    <!-- Card: Temperature Converter -->
+    <div class="bg-white rounded-3xl border border-slate-100 card-shadow p-8 flex flex-col items-center text-center transition-transform hover:scale-[1.02] duration-300" data-purpose="converter-card">
+      <div class="w-40 h-40 mb-6 flex items-center justify-center bg-blue-50/50 rounded-2xl p-4">
+        <img alt="Temperature Converter" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk7SMllQRI8Cb6kJIBEz-x0mxy6-gR_dC7UpjBdRNImyh9GOfXPTV03eiVq3zN9lg9cwHTgy88B2TkKYPZGqrD_6equdgiI0RUKL-uejcZMeR6nP_LiCUAKJAFzM0xo6rXxXG9pnWGy7A3TTseskB-mtU4Kn71qs14VnG9Fb96zlpQOcNdRcCxm0L7uqhSCZp6Wx48vitV6y45aTOCuv6vmPCVVBH786PIVYN4RHqN4l5b66smM5vSeks5HYK1Ssu0ybhJ2pQoE4c"/>
+      </div>
+      <h2 class="text-xl font-bold text-slate-900 mb-2.5">Temperature Converter</h2>
+      <p class="text-slate-500 text-xs leading-relaxed mb-6 flex-grow">
+        Convert thermal measurements instantly between Celsius (°C), Fahrenheit (°F), and Kelvin (K) scales.
+      </p>
+      <button class="w-full py-3.5 px-6 border border-slate-200 hover:border-blue-500 rounded-xl text-slate-700 hover:text-blue-600 font-semibold text-sm hover:bg-blue-50/20 transition-all duration-200 shadow-sm" onclick="triggerCategoryScroll('temperature')">
+        Go to Tool
+      </button>
+    </div>
+
+  </div>
 </main>
 <!-- END: ConverterGrid -->
+
 <!-- BEGIN: PopularConversions -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 text-center" data-purpose="popular-links">
-<h3 class="text-xl font-bold text-slate-900 mb-6">Popular Conversions</h3>
-<div class="flex flex-wrap justify-center gap-x-10 gap-y-4 text-sm font-medium text-slate-600">
-<a class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2" href="#">Meters to Feet</a>
-<a class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2" href="#">Kilograms to Pounds</a>
-<a class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2" href="#">Celsius to Fahrenheit</a>
-</div>
+  <h3 class="text-lg font-bold text-slate-900 mb-5 tracking-tight uppercase text-xs tracking-wider text-slate-400">Popular Conversions</h3>
+  <div class="flex flex-wrap justify-center gap-x-8 gap-y-3.5 text-sm font-semibold text-slate-600">
+    <button class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2 transition-all flex items-center" onclick="triggerPopularConversion('length', 'm', 'ft', 1)">
+      Meters to Feet
+    </button>
+    <span class="text-slate-200 hidden sm:inline">•</span>
+    <button class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2 transition-all flex items-center" onclick="triggerPopularConversion('weight', 'kg', 'lb', 1)">
+      Kilograms to Pounds
+    </button>
+    <span class="text-slate-200 hidden sm:inline">•</span>
+    <button class="hover:text-blue-600 hover:underline underline-offset-4 decoration-2 transition-all flex items-center" onclick="triggerPopularConversion('temperature', 'C', 'F', 0)">
+      Celsius to Fahrenheit
+    </button>
+  </div>
 </section>
 <!-- END: PopularConversions -->
+
 <!-- BEGIN: Footer -->
-<footer class="border-t border-gray-200 bg-white py-10" data-purpose="page-footer">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-<!-- Copyright Info -->
-<div class="mb-4 md:mb-0">
-          © 2022 Converter Unit. All rights reserved.
-        </div>
-<!-- Footer Links -->
-<div class="flex space-x-6 font-medium">
-<a class="hover:text-slate-900" href="#">Privacy Policy</a>
-<a class="hover:text-slate-900" href="#">Terms of Service</a>
-</div>
-</div>
-</div>
+<footer class="border-t border-slate-100 bg-white py-10" data-purpose="page-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+      <!-- Copyright Info -->
+      <div class="mb-4 md:mb-0">
+        © 2026 Unit Converter Suite. Built with passion & precision. All rights reserved.
+      </div>
+      <!-- Footer Links -->
+      <div class="flex space-x-6 font-medium">
+        <a class="hover:text-slate-900 transition-colors" href="#" onclick="alert('This demo project operates entirely client-side. No user data is stored.'); return false;">Privacy Policy</a>
+        <a class="hover:text-slate-900 transition-colors" href="#" onclick="alert('Provided for quick standard unit computations.'); return false;">Terms of Service</a>
+      </div>
+    </div>
+  </div>
 </footer>
 <!-- END: Footer -->
+
+<!-- JavaScript Application Logic -->
+<script>
+  // Complete mathematical system configuration
+  const conversionRates = {
+    length: {
+      mm: { name: 'Millimeters (mm)', symbol: 'mm', factor: 0.001 },
+      cm: { name: 'Centimeters (cm)', symbol: 'cm', factor: 0.01 },
+      m: { name: 'Meters (m)', symbol: 'm', factor: 1.0 },
+      km: { name: 'Kilometers (km)', symbol: 'km', factor: 1000.0 },
+      in: { name: 'Inches (in)', symbol: 'in', factor: 0.0254 },
+      ft: { name: 'Feet (ft)', symbol: 'ft', factor: 0.3048 },
+      yd: { name: 'Yards (yd)', symbol: 'yd', factor: 0.9144 },
+      mi: { name: 'Miles (mi)', symbol: 'mi', factor: 1609.344 }
+    },
+    weight: {
+      mg: { name: 'Milligrams (mg)', symbol: 'mg', factor: 1e-6 },
+      g: { name: 'Grams (g)', symbol: 'g', factor: 0.001 },
+      kg: { name: 'Kilograms (kg)', symbol: 'kg', factor: 1.0 },
+      oz: { name: 'Ounces (oz)', symbol: 'oz', factor: 0.028349523125 },
+      lb: { name: 'Pounds (lb)', symbol: 'lb', factor: 0.45359237 },
+      st: { name: 'Stones (st)', symbol: 'st', factor: 6.35029318 }
+    },
+    temperature: {
+      C: { name: 'Celsius (°C)', symbol: '°C' },
+      F: { name: 'Fahrenheit (°F)', symbol: '°F' },
+      K: { name: 'Kelvin (K)', symbol: 'K' }
+    }
+  };
+
+  // State Management
+  let currentCategory = 'length';
+  let history = JSON.parse(localStorage.getItem('unit_converter_history') || '[]');
+
+  // Active elements
+  const fromValEl = document.getElementById('from-value');
+  const fromUnitEl = document.getElementById('from-unit');
+  const toValEl = document.getElementById('to-value');
+  const toUnitEl = document.getElementById('to-unit');
+  const formulaTextEl = document.getElementById('formula-text');
+  const mathDetailsEl = document.getElementById('math-details');
+  const swapBtnEl = document.getElementById('swap-btn');
+  const copyToastEl = document.getElementById('copy-toast');
+  const historyListEl = document.getElementById('history-list');
+  const historyEmptyEl = document.getElementById('history-empty');
+  const clearHistoryEl = document.getElementById('clear-history-btn');
+
+  // Initialize App on Page Load
+  window.addEventListener('DOMContentLoaded', () => {
+    switchCategory('length');
+    renderHistory();
+  });
+
+  // Category Switch Logic
+  function switchCategory(category) {
+    currentCategory = category;
+
+    // Toggle active styles on tabs
+    const categories = ['length', 'weight', 'temperature'];
+    categories.forEach(cat => {
+      const tab = document.getElementById(`tab-${cat}`);
+      if (cat === category) {
+        tab.className = "flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 transition-all duration-200 scale-[1.02] pointer-events-none";
+      } else {
+        tab.className = "flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200/40 shadow-sm transition-all duration-200";
+      }
+    });
+
+    // Re-populate dropdowns
+    populateDropdowns(category);
+
+    // Default configs for tabs
+    if (category === 'length') {
+      fromUnitEl.value = 'm';
+      toUnitEl.value = 'ft';
+    } else if (category === 'weight') {
+      fromUnitEl.value = 'kg';
+      toUnitEl.value = 'lb';
+    } else if (category === 'temperature') {
+      fromUnitEl.value = 'C';
+      toUnitEl.value = 'F';
+    }
+
+    // Reset value if empty
+    if (!fromValEl.value) {
+      fromValEl.value = 1;
+    }
+
+    calculate();
+  }
+
+  // Populate Dropdown Menus
+  function populateDropdowns(category) {
+    const list = conversionRates[category];
+    fromUnitEl.innerHTML = '';
+    toUnitEl.innerHTML = '';
+
+    for (const key in list) {
+      const optFrom = document.createElement('option');
+      optFrom.value = key;
+      optFrom.textContent = list[key].name;
+      fromUnitEl.appendChild(optFrom);
+
+      const optTo = document.createElement('option');
+      optTo.value = key;
+      optTo.textContent = list[key].name;
+      toUnitEl.appendChild(optTo);
+    }
+  }
+
+  // Swap Units Logic with Rotation Animation
+  function swapUnits() {
+    // Spark spin animation
+    swapBtnEl.classList.add('rotate-active');
+    setTimeout(() => {
+      swapBtnEl.classList.remove('rotate-active');
+    }, 450);
+
+    const temp = fromUnitEl.value;
+    fromUnitEl.value = toUnitEl.value;
+    toUnitEl.value = temp;
+
+    // If swapping is temperature, make sure calculation handles correctly
+    calculate();
+  }
+
+  // Real-Time Conversion Engine
+  function calculate() {
+    const val = parseFloat(fromValEl.value);
+    
+    if (isNaN(val)) {
+      toValEl.value = '';
+      formulaTextEl.textContent = 'Enter a valid number to start conversion';
+      mathDetailsEl.textContent = '';
+      return;
+    }
+
+    const fromUnit = fromUnitEl.value;
+    const toUnit = toUnitEl.value;
+    let result = 0;
+    let formulaDesc = '';
+    let mathDesc = '';
+
+    if (currentCategory === 'temperature') {
+      // Temperature conversions
+      if (fromUnit === toUnit) {
+        result = val;
+        formulaDesc = `1 ${conversionRates.temperature[fromUnit].name} = 1 ${conversionRates.temperature[toUnit].name}`;
+        mathDesc = `${val} = ${val}`;
+      } else {
+        // Source to Celsius
+        let tempInC;
+        if (fromUnit === 'C') {
+          tempInC = val;
+        } else if (fromUnit === 'F') {
+          tempInC = (val - 32) * 5 / 9;
+        } else if (fromUnit === 'K') {
+          tempInC = val - 273.15;
+        }
+
+        // Celsius to Target
+        if (toUnit === 'C') {
+          result = tempInC;
+        } else if (toUnit === 'F') {
+          result = (tempInC * 9 / 5) + 32;
+        } else if (toUnit === 'K') {
+          result = tempInC + 273.15;
+        }
+
+        // Generate clean temperature formula strings
+        if (fromUnit === 'C' && toUnit === 'F') {
+          formulaDesc = `Fahrenheit = (Celsius × 9/5) + 32`;
+          mathDesc = `(${val} × 1.8) + 32 = ${formatNumber(result)}`;
+        } else if (fromUnit === 'F' && toUnit === 'C') {
+          formulaDesc = `Celsius = (Fahrenheit - 32) × 5/9`;
+          mathDesc = `(${val} - 32) × 0.555 = ${formatNumber(result)}`;
+        } else if (fromUnit === 'C' && toUnit === 'K') {
+          formulaDesc = `Kelvin = Celsius + 273.15`;
+          mathDesc = `${val} + 273.15 = ${formatNumber(result)}`;
+        } else if (fromUnit === 'K' && toUnit === 'C') {
+          formulaDesc = `Celsius = Kelvin - 273.15`;
+          mathDesc = `${val} - 273.15 = ${formatNumber(result)}`;
+        } else if (fromUnit === 'F' && toUnit === 'K') {
+          formulaDesc = `Kelvin = (Fahrenheit - 32) × 5/9 + 273.15`;
+          mathDesc = `(${val} - 32) × 5/9 + 273.15 = ${formatNumber(result)}`;
+        } else if (fromUnit === 'K' && toUnit === 'F') {
+          formulaDesc = `Fahrenheit = (Kelvin - 273.15) × 9/5 + 32`;
+          mathDesc = `(${val} - 273.15) × 1.8 + 32 = ${formatNumber(result)}`;
+        }
+      }
+    } else {
+      // Linear conversions (Length & Weight)
+      const data = conversionRates[currentCategory];
+      const fromFactor = data[fromUnit].factor;
+      const toFactor = data[toUnit].factor;
+
+      // Base formula: (val * fromFactor) / toFactor
+      const inBaseUnit = val * fromFactor;
+      result = inBaseUnit / toFactor;
+
+      // Formula description
+      const rawRatio = fromFactor / toFactor;
+      const displayRatio = formatNumber(rawRatio, 6);
+      formulaDesc = `1 ${data[fromUnit].symbol} ≈ ${displayRatio} ${data[toUnit].symbol}`;
+      mathDesc = `${val} × ${displayRatio} = ${formatNumber(result)}`;
+    }
+
+    // Output formatted result
+    toValEl.value = formatNumber(result);
+    formulaTextEl.textContent = formulaDesc;
+    mathDetailsEl.textContent = mathDesc;
+
+    // Proactively save to conversion history (debounce simple key presses)
+    debounceSaveToHistory(val, fromUnit, result, toUnit);
+  }
+
+  // Format Float numbers cleanly
+  function formatNumber(num, maxDecimals = 6) {
+    if (num === 0) return 0;
+    const absNum = Math.abs(num);
+    
+    // Choose appropriate decimal precision dynamically
+    let precision = maxDecimals;
+    if (absNum >= 1000) precision = 2;
+    else if (absNum >= 100) precision = 3;
+    else if (absNum >= 1) precision = 4;
+    else if (absNum >= 0.0001) precision = 6;
+    else precision = 8;
+
+    // Parse floats and remove trailing zeros
+    return parseFloat(num.toFixed(precision));
+  }
+
+  // History Debounce to prevent spelling triggers
+  let saveHistoryTimeout;
+  function debounceSaveToHistory(val, fromUnit, result, toUnit) {
+    clearTimeout(saveHistoryTimeout);
+    saveHistoryTimeout = setTimeout(() => {
+      saveToHistory(val, fromUnit, result, toUnit);
+    }, 1500); // Wait 1.5 seconds after user stops interacting to commit to history
+  }
+
+  // Save conversion event into local storage
+  function saveToHistory(val, fromUnit, result, toUnit) {
+    const list = conversionRates[currentCategory];
+    const categoryName = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+    
+    const entry = {
+      id: Date.now(),
+      category: currentCategory,
+      categoryLabel: categoryName,
+      val: val,
+      fromSymbol: list[fromUnit].symbol,
+      fromUnit: fromUnit,
+      result: result,
+      toSymbol: list[toUnit].symbol,
+      toUnit: toUnit
+    };
+
+    // Filter duplicates
+    history = history.filter(h => !(h.category === entry.category && h.val === entry.val && h.fromUnit === entry.fromUnit && h.toUnit === entry.toUnit));
+
+    // Prepend and limit size to 5 items
+    history.unshift(entry);
+    if (history.length > 5) history.pop();
+
+    localStorage.setItem('unit_converter_history', JSON.stringify(history));
+    renderHistory();
+  }
+
+  // Render recent conversions UI
+  function renderHistory() {
+    historyListEl.innerHTML = '';
+    if (history.length === 0) {
+      historyEmptyEl.classList.remove('hidden');
+      clearHistoryEl.classList.add('hidden');
+      return;
+    }
+
+    historyEmptyEl.classList.add('hidden');
+    clearHistoryEl.classList.remove('hidden');
+
+    history.forEach(item => {
+      const badge = document.createElement('button');
+      badge.className = "text-xs font-semibold py-2 px-3.5 bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 rounded-xl text-slate-600 hover:text-blue-700 shadow-sm flex items-center transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0";
+      badge.innerHTML = `
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>
+        <span class="font-bold mr-1 text-slate-800">${item.categoryLabel}:</span>
+        <span>${item.val} ${item.fromSymbol} → ${formatNumber(item.result)} ${item.toSymbol}</span>
+      `;
+      badge.onclick = () => loadHistoryItem(item);
+      historyListEl.appendChild(badge);
+    });
+  }
+
+  // Load selected history block
+  function loadHistoryItem(item) {
+    currentCategory = item.category;
+    switchCategory(item.category);
+    fromValEl.value = item.val;
+    fromUnitEl.value = item.fromUnit;
+    toUnitEl.value = item.toUnit;
+    
+    // Trigger smooth transition scroll to calculator
+    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    calculate();
+  }
+
+  // Delete all local history
+  function clearHistory() {
+    history = [];
+    localStorage.removeItem('unit_converter_history');
+    renderHistory();
+  }
+
+  // Copy calculations to clipboard with animation
+  function copyResult() {
+    const textToCopy = `${fromValEl.value} ${conversionRates[currentCategory][fromUnitEl.value].symbol} = ${toValEl.value} ${conversionRates[currentCategory][toUnitEl.value].symbol}`;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      // Toggle Toast
+      copyToastEl.style.opacity = '1';
+      setTimeout(() => {
+        copyToastEl.style.opacity = '0';
+      }, 1500);
+    }).catch(err => {
+      console.error('Failed to copy to clipboard', err);
+    });
+  }
+
+  // Smooth Category Scroll Links
+  function triggerCategoryScroll(category) {
+    switchCategory(category);
+    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Click on Popular Conversion in footer
+  function triggerPopularConversion(category, fromUnit, toUnit, defaultVal) {
+    switchCategory(category);
+    fromUnitEl.value = fromUnit;
+    toUnitEl.value = toUnit;
+    if (defaultVal > 0) {
+      fromValEl.value = defaultVal;
+    }
+    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    calculate();
+  }
+</script>
+
 </body>
 </html>
