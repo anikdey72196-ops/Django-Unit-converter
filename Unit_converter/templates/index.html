@@ -335,6 +335,12 @@
   let history = JSON.parse(localStorage.getItem('unit_converter_history') || '[]');
 
   // Active elements
+  const categoryTabs = {
+    length: document.getElementById('tab-length'),
+    weight: document.getElementById('tab-weight'),
+    temperature: document.getElementById('tab-temperature')
+  };
+
   const fromValEl = document.getElementById('from-value');
   const fromUnitEl = document.getElementById('from-unit');
   const toValEl = document.getElementById('to-value');
@@ -360,7 +366,7 @@
     // Toggle active styles on tabs
     const categories = ['length', 'weight', 'temperature'];
     categories.forEach(cat => {
-      const tab = document.getElementById(`tab-${cat}`);
+      const tab = categoryTabs[cat];
       if (cat === category) {
         tab.className = "flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 transition-all duration-200 scale-[1.02] pointer-events-none";
       } else {
