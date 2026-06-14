@@ -306,6 +306,8 @@
   // Complete mathematical system configuration
   const conversionRates = {
     length: {
+      defaultFrom: 'm',
+      defaultTo: 'ft',
       mm: { name: 'Millimeters (mm)', symbol: 'mm', factor: 0.001 },
       cm: { name: 'Centimeters (cm)', symbol: 'cm', factor: 0.01 },
       m: { name: 'Meters (m)', symbol: 'm', factor: 1.0 },
@@ -316,6 +318,8 @@
       mi: { name: 'Miles (mi)', symbol: 'mi', factor: 1609.344 }
     },
     weight: {
+      defaultFrom: 'kg',
+      defaultTo: 'lb',
       mg: { name: 'Milligrams (mg)', symbol: 'mg', factor: 1e-6 },
       g: { name: 'Grams (g)', symbol: 'g', factor: 0.001 },
       kg: { name: 'Kilograms (kg)', symbol: 'kg', factor: 1.0 },
@@ -324,6 +328,8 @@
       st: { name: 'Stones (st)', symbol: 'st', factor: 6.35029318 }
     },
     temperature: {
+      defaultFrom: 'C',
+      defaultTo: 'F',
       C: { name: 'Celsius (°C)', symbol: '°C' },
       F: { name: 'Fahrenheit (°F)', symbol: '°F' },
       K: { name: 'Kelvin (K)', symbol: 'K' }
@@ -372,15 +378,9 @@
     populateDropdowns(category);
 
     // Default configs for tabs
-    if (category === 'length') {
-      fromUnitEl.value = 'm';
-      toUnitEl.value = 'ft';
-    } else if (category === 'weight') {
-      fromUnitEl.value = 'kg';
-      toUnitEl.value = 'lb';
-    } else if (category === 'temperature') {
-      fromUnitEl.value = 'C';
-      toUnitEl.value = 'F';
+    if (conversionRates[category]) {
+      fromUnitEl.value = conversionRates[category].defaultFrom;
+      toUnitEl.value = conversionRates[category].defaultTo;
     }
 
     // Reset value if empty
@@ -398,6 +398,7 @@
     toUnitEl.innerHTML = '';
 
     for (const key in list) {
+      if (key === 'defaultFrom' || key === 'defaultTo') continue;
       const optFrom = document.createElement('option');
       optFrom.value = key;
       optFrom.textContent = list[key].name;
