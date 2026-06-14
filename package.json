@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "**Repository:** [https://roadmap.sh/projects/unit-converter]",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anikdey72196-ops/Django-Unit-converter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/anikdey72196-ops/Django-Unit-converter/issues"
+  },
+  "homepage": "https://github.com/anikdey72196-ops/Django-Unit-converter#readme",
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^29.0.0"
+  }
+}
