@@ -1,0 +1,3 @@
+## 2024-06-16 - Focus States on Icon Buttons
+**Learning:** Icon-only interactive elements (like the swap button and copy button) lacked both ARIA labels for screen readers and visible focus states for keyboard users.
+**Action:** Always ensure `aria-label` and `focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-blue-500` (or similar focus classes based on the design system) are added to all interactive elements that only contain an SVG or icon.
