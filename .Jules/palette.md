@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing ARIA Labels on Core Interactive Elements
+**Learning:** Found an accessibility issue pattern specific to this app's components where core interactive elements (like the swap button and mobile menu) are icon-only and lack `aria-label`s. Form inputs (select elements for units) also lacked explicit programmatic associations or ARIA labels despite having visual adjacent labels.
+**Action:** Always ensure icon-only buttons include an `aria-label`, and that form elements such as `<select>` drop-downs have explicitly associated `<label>` elements or descriptive `aria-label` attributes to ensure screen readers can announce their purpose correctly.
