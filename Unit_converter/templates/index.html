@@ -88,8 +88,8 @@
       </nav>
       <!-- Mobile Menu Toggle -->
       <div class="md:hidden">
-        <button class="text-slate-500 hover:text-slate-600 p-2" type="button" onclick="alert('Menu links: Home, Converter, Categories')">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+        <button class="text-slate-500 hover:text-slate-600 p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg" type="button" aria-label="Toggle mobile menu" onclick="alert('Menu links: Home, Converter, Categories')">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
         </button>
       </div>
     </div>
@@ -147,15 +147,15 @@
       <div class="lg:col-span-4 bg-slate-50/80 border border-slate-100 rounded-2xl p-5 shadow-sm focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 transition-all duration-200">
         <label for="from-value" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">From</label>
         <div class="flex flex-col gap-3">
-          <input type="number" id="from-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none placeholder-slate-300" value="1" step="any" oninput="calculate()">
-          <select id="from-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <input type="number" id="from-value" aria-label="Input value to convert" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none placeholder-slate-300" value="1" step="any" oninput="calculate()">
+          <select id="from-unit" aria-label="Source unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
       <!-- Swap Action Column -->
       <div class="lg:col-span-1 flex justify-center py-2 lg:py-0">
-        <button id="swap-btn" class="w-12 h-12 bg-white hover:bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center shadow-md text-slate-500 hover:text-blue-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 rotate-effect" onclick="swapUnits()">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <button id="swap-btn" class="w-12 h-12 bg-white hover:bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center shadow-md text-slate-500 hover:text-blue-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 rotate-effect focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" aria-label="Swap units" onclick="swapUnits()">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 8V4m0 16l-4-4m4 4l4-4"/>
           </svg>
         </button>
@@ -166,18 +166,18 @@
         <label for="to-value" class="block text-xs font-bold uppercase tracking-wider text-blue-500 mb-2">To</label>
         <div class="flex flex-col gap-3">
           <div class="flex items-center justify-between">
-            <input type="text" id="to-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none" readonly value="3.28084">
+            <input type="text" id="to-value" aria-label="Converted value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none" readonly value="3.28084">
             
             <!-- Copy Action Button -->
-            <button id="copy-btn" class="p-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-500 hover:text-blue-600 shadow-sm transition-all hover:scale-105" title="Copy result to clipboard" onclick="copyResult()">
-              <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <button id="copy-btn" class="p-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-500 hover:text-blue-600 shadow-sm transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" aria-label="Copy result" title="Copy result to clipboard" onclick="copyResult()">
+              <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m-6 4h6m-6 4h6"/>
               </svg>
               <!-- Success Indicator Tooltip (Hidden initially) -->
               <span id="copy-toast" class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2.5 py-1 bg-slate-900 text-white text-xs font-bold rounded shadow-lg opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap">Copied!</span>
             </button>
           </div>
-          <select id="to-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <select id="to-unit" aria-label="Target unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
