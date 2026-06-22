@@ -1,0 +1,3 @@
+## 2024-06-22 - Missing ARIA Labels on Icon-Only Buttons
+**Learning:** Found an accessibility issue pattern specific to this app's components where interactive icon-only buttons (like mobile menu toggle, swap units button, and copy to clipboard button) were missing `aria-label`s and proper visible focus states (`focus-visible`). This makes the application hard to navigate for keyboard-only users and screen readers.
+**Action:** Always verify that every interactive button, especially icon-only buttons, includes an `aria-label` describing its function and a clearly visible focus indicator (e.g., `focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-blue-500`) to comply with accessibility standards.
