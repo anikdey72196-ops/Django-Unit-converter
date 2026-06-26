@@ -1,0 +1,3 @@
+## 2025-02-23 - Accessibility of Grouped Form Controls
+**Learning:** When interactive elements like a value input and a unit select dropdown are visually grouped under a single generic label (e.g., "From" or "To"), screen readers may not automatically associate that visual label with both underlying inputs. Furthermore, icon-only buttons (like swap or copy) lack text context.
+**Action:** Always provide explicit `aria-label` attributes to inner interactive elements (e.g., the `<input>` and `<select>` within a group, and icon-only `<button>`s) to ensure they are fully accessible and contextually clear to screen reader users.
