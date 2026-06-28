@@ -391,23 +391,27 @@
     calculate();
   }
 
-  // Populate Dropdown Menus
+  // Cache to store generated dropdown HTML
+  const dropdownCache = {};
+
+  // Populate Dropdown Menus (Optimized)
   function populateDropdowns(category) {
-    const list = conversionRates[category];
-    fromUnitEl.innerHTML = '';
-    toUnitEl.innerHTML = '';
-
-    for (const key in list) {
-      const optFrom = document.createElement('option');
-      optFrom.value = key;
-      optFrom.textContent = list[key].name;
-      fromUnitEl.appendChild(optFrom);
-
-      const optTo = document.createElement('option');
-      optTo.value = key;
-      optTo.textContent = list[key].name;
-      toUnitEl.appendChild(optTo);
+    // ⚡ Bolt Optimization: Use string concatenation and caching instead of repeated DOM node creation.
+    // What: Caches the HTML string for dropdown options per category.
+    // Why: Avoids expensive document.createElement and appendChild calls in a loop during category switching.
+    // Impact: Makes category switching O(1) after the first load and reduces garbage collection.
+    // Measurement: Profile memory usage and category switch time.
+    if (!dropdownCache[category]) {
+      const list = conversionRates[category];
+      let optionsHTML = '';
+      for (const key in list) {
+        optionsHTML += `<option value="${key}">${list[key].name}</option>`;
+      }
+      dropdownCache[category] = optionsHTML;
     }
+
+    fromUnitEl.innerHTML = dropdownCache[category];
+    toUnitEl.innerHTML = dropdownCache[category];
   }
 
   // Swap Units Logic with Rotation Animation
