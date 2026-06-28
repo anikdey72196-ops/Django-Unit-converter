@@ -1,0 +1,3 @@
+## 2026-06-28 - Grouped Interactive Elements and Screen Reader Support
+**Learning:** When grouping interactive elements (like a value input and a unit select dropdown) under a single visual label like "From" or "To", the visual layout makes sense to sighted users, but screen readers may lack context when focusing on the individual inner elements (especially the dropdown).
+**Action:** Always provide individual `aria-label` attributes to the inner interactive elements (e.g., `<select aria-label="Select source unit">` and `<input aria-label="Source Value">`) within visually grouped panels to ensure they are fully accessible and contextually clear to screen readers.
