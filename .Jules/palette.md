@@ -1,0 +1,3 @@
+## 2026-07-01 - Add ARIA Labels to Screen-Reader Friendly Select Inputs
+**Learning:** For accessibility, when grouping interactive elements (like a value input and a unit select dropdown) under a single visual label (e.g. "From"), the inner elements—like the select dropdown—require individual `aria-label` attributes to ensure they are fully accessible to screen readers, instead of relying solely on the visual parent label.
+**Action:** When adding or auditing complex input groups, always inspect individual form controls (inputs, selects) to verify they carry explicit `aria-label`s or `aria-labelledby` attributes that screen readers can interpret, especially when a single visual `label` tag is used to describe the entire group.
