@@ -392,22 +392,17 @@
   }
 
   // Populate Dropdown Menus
+  // ⚡ Bolt Optimization: Cache HTML string to prevent looping element creation
   function populateDropdowns(category) {
     const list = conversionRates[category];
-    fromUnitEl.innerHTML = '';
-    toUnitEl.innerHTML = '';
+    let optionsHtml = '';
 
     for (const key in list) {
-      const optFrom = document.createElement('option');
-      optFrom.value = key;
-      optFrom.textContent = list[key].name;
-      fromUnitEl.appendChild(optFrom);
-
-      const optTo = document.createElement('option');
-      optTo.value = key;
-      optTo.textContent = list[key].name;
-      toUnitEl.appendChild(optTo);
+      optionsHtml += `<option value="${key}">${list[key].name}</option>`;
     }
+
+    fromUnitEl.innerHTML = optionsHtml;
+    toUnitEl.innerHTML = optionsHtml;
   }
 
   // Swap Units Logic with Rotation Animation
@@ -571,6 +566,7 @@
   }
 
   // Render recent conversions UI
+  // ⚡ Bolt Optimization: Use DocumentFragment to batch DOM insertions
   function renderHistory() {
     historyListEl.innerHTML = '';
     if (history.length === 0) {
@@ -582,6 +578,8 @@
     historyEmptyEl.classList.add('hidden');
     clearHistoryEl.classList.remove('hidden');
 
+    const fragment = document.createDocumentFragment();
+
     history.forEach(item => {
       const badge = document.createElement('button');
       badge.className = "text-xs font-semibold py-2 px-3.5 bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 rounded-xl text-slate-600 hover:text-blue-700 shadow-sm flex items-center transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0";
@@ -591,8 +589,10 @@
         <span>${item.val} ${item.fromSymbol} → ${formatNumber(item.result)} ${item.toSymbol}</span>
       `;
       badge.onclick = () => loadHistoryItem(item);
-      historyListEl.appendChild(badge);
+      fragment.appendChild(badge);
     });
+
+    historyListEl.appendChild(fragment);
   }
 
   // Load selected history block
