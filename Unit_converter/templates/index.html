@@ -394,20 +394,17 @@
   // Populate Dropdown Menus
   function populateDropdowns(category) {
     const list = conversionRates[category];
-    fromUnitEl.innerHTML = '';
-    toUnitEl.innerHTML = '';
 
+    // ⚡ Bolt Optimization: Use string concatenation instead of
+    // repeatedly creating and appending elements in a loop.
+    // This reduces DOM manipulation overhead and reflows.
+    let optionsHTML = '';
     for (const key in list) {
-      const optFrom = document.createElement('option');
-      optFrom.value = key;
-      optFrom.textContent = list[key].name;
-      fromUnitEl.appendChild(optFrom);
-
-      const optTo = document.createElement('option');
-      optTo.value = key;
-      optTo.textContent = list[key].name;
-      toUnitEl.appendChild(optTo);
+      optionsHTML += `<option value="${key}">${list[key].name}</option>`;
     }
+
+    fromUnitEl.innerHTML = optionsHTML;
+    toUnitEl.innerHTML = optionsHTML;
   }
 
   // Swap Units Logic with Rotation Animation
