@@ -1,0 +1,3 @@
+## 2025-01-20 - Grouped Input Accessibility
+**Learning:** When grouping interactive elements like a value input and a unit select dropdown under a single visual label, it is important to provide individual `aria-label` attributes to the inner elements (like the select dropdown) to ensure they have sufficient context and are fully accessible to screen readers.
+**Action:** When creating composite components or grouping inputs visually, check each interactive sub-element to ensure it has adequate accessible naming, avoiding reliance solely on a shared parent label.
