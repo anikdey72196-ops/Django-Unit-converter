@@ -397,17 +397,24 @@
     fromUnitEl.innerHTML = '';
     toUnitEl.innerHTML = '';
 
+    // Bolt: Use DocumentFragment to batch DOM insertions and reduce layout recalculations
+    const fromFragment = document.createDocumentFragment();
+    const toFragment = document.createDocumentFragment();
+
     for (const key in list) {
       const optFrom = document.createElement('option');
       optFrom.value = key;
       optFrom.textContent = list[key].name;
-      fromUnitEl.appendChild(optFrom);
+      fromFragment.appendChild(optFrom);
 
       const optTo = document.createElement('option');
       optTo.value = key;
       optTo.textContent = list[key].name;
-      toUnitEl.appendChild(optTo);
+      toFragment.appendChild(optTo);
     }
+
+    fromUnitEl.appendChild(fromFragment);
+    toUnitEl.appendChild(toFragment);
   }
 
   // Swap Units Logic with Rotation Animation
@@ -582,6 +589,9 @@
     historyEmptyEl.classList.add('hidden');
     clearHistoryEl.classList.remove('hidden');
 
+    // Bolt: Use DocumentFragment to batch DOM insertions and reduce layout recalculations
+    const fragment = document.createDocumentFragment();
+
     history.forEach(item => {
       const badge = document.createElement('button');
       badge.className = "text-xs font-semibold py-2 px-3.5 bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 rounded-xl text-slate-600 hover:text-blue-700 shadow-sm flex items-center transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0";
@@ -591,8 +601,10 @@
         <span>${item.val} ${item.fromSymbol} → ${formatNumber(item.result)} ${item.toSymbol}</span>
       `;
       badge.onclick = () => loadHistoryItem(item);
-      historyListEl.appendChild(badge);
+      fragment.appendChild(badge);
     });
+
+    historyListEl.appendChild(fragment);
   }
 
   // Load selected history block
