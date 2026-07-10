@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,14 +148,14 @@
       <div class="lg:col-span-4 bg-slate-50/80 border border-slate-100 rounded-2xl p-5 shadow-sm focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 transition-all duration-200">
         <label for="from-value" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">From</label>
         <div class="flex flex-col gap-3">
-          <input type="number" id="from-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none placeholder-slate-300" value="1" step="any" oninput="calculate()">
-          <select id="from-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <input type="number" id="fromValue" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none placeholder-slate-300" value="1" step="any" oninput="calculate()">
+          <select id="fromUnit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
       <!-- Swap Action Column -->
       <div class="lg:col-span-1 flex justify-center py-2 lg:py-0">
-        <button id="swap-btn" class="w-12 h-12 bg-white hover:bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center shadow-md text-slate-500 hover:text-blue-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 rotate-effect" onclick="swapUnits()">
+        <button id="swapBtn" class="w-12 h-12 bg-white hover:bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center shadow-md text-slate-500 hover:text-blue-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 rotate-effect" onclick="swapUnits()">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 8V4m0 16l-4-4m4 4l4-4"/>
           </svg>
@@ -166,7 +167,7 @@
         <label for="to-value" class="block text-xs font-bold uppercase tracking-wider text-blue-500 mb-2">To</label>
         <div class="flex flex-col gap-3">
           <div class="flex items-center justify-between">
-            <input type="text" id="to-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none" readonly value="3.28084">
+            <input type="text" id="toValue" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none" readonly value="3.28084">
             
             <!-- Copy Action Button -->
             <button id="copy-btn" class="p-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-500 hover:text-blue-600 shadow-sm transition-all hover:scale-105" title="Copy result to clipboard" onclick="copyResult()">
@@ -174,10 +175,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m-6 4h6m-6 4h6"/>
               </svg>
               <!-- Success Indicator Tooltip (Hidden initially) -->
-              <span id="copy-toast" class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2.5 py-1 bg-slate-900 text-white text-xs font-bold rounded shadow-lg opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap">Copied!</span>
+              <span id="copyToast" class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2.5 py-1 bg-slate-900 text-white text-xs font-bold rounded shadow-lg opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap">Copied!</span>
             </button>
           </div>
-          <select id="to-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <select id="toUnit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
@@ -187,9 +188,9 @@
     <div id="formula-container" class="mt-8 p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between text-xs text-slate-500">
       <div class="flex items-center space-x-2">
         <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-200 text-slate-700 font-bold">i</span>
-        <span id="formula-text" class="font-medium">1 Meter (m) = 3.28084 Feet (ft)</span>
+        <span id="formulaText" class="font-medium">1 Meter (m) = 3.28084 Feet (ft)</span>
       </div>
-      <span class="text-slate-400 italic font-mono hidden sm:inline" id="math-details">1 × 3.28084 = 3.28084</span>
+      <span class="text-slate-400 italic font-mono hidden sm:inline" id="mathDetails">1 × 3.28084 = 3.28084</span>
     </div>
 
     <!-- Dynamic History Panel -->
@@ -198,10 +199,10 @@
         <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400">Recent Conversions</h4>
         <button id="clear-history-btn" class="text-xs font-semibold text-slate-400 hover:text-red-500 transition-colors hidden" onclick="clearHistory()">Clear All</button>
       </div>
-      <div id="history-empty" class="text-xs text-slate-400 italic py-2">
+      <div id="historyEmpty" class="text-xs text-slate-400 italic py-2">
         Your dynamic calculations history will be displayed here as you perform them.
       </div>
-      <div id="history-list" class="flex flex-wrap gap-2.5 max-h-[160px] overflow-y-auto pr-1">
+      <div id="historyList" class="flex flex-wrap gap-2.5 max-h-[160px] overflow-y-auto pr-1">
         <!-- History Badges Inserted Dynamically -->
       </div>
     </div>
@@ -302,351 +303,6 @@
 <!-- END: Footer -->
 
 <!-- JavaScript Application Logic -->
-<script>
-  // Complete mathematical system configuration
-  const conversionRates = {
-    length: {
-      mm: { name: 'Millimeters (mm)', symbol: 'mm', factor: 0.001 },
-      cm: { name: 'Centimeters (cm)', symbol: 'cm', factor: 0.01 },
-      m: { name: 'Meters (m)', symbol: 'm', factor: 1.0 },
-      km: { name: 'Kilometers (km)', symbol: 'km', factor: 1000.0 },
-      in: { name: 'Inches (in)', symbol: 'in', factor: 0.0254 },
-      ft: { name: 'Feet (ft)', symbol: 'ft', factor: 0.3048 },
-      yd: { name: 'Yards (yd)', symbol: 'yd', factor: 0.9144 },
-      mi: { name: 'Miles (mi)', symbol: 'mi', factor: 1609.344 }
-    },
-    weight: {
-      mg: { name: 'Milligrams (mg)', symbol: 'mg', factor: 1e-6 },
-      g: { name: 'Grams (g)', symbol: 'g', factor: 0.001 },
-      kg: { name: 'Kilograms (kg)', symbol: 'kg', factor: 1.0 },
-      oz: { name: 'Ounces (oz)', symbol: 'oz', factor: 0.028349523125 },
-      lb: { name: 'Pounds (lb)', symbol: 'lb', factor: 0.45359237 },
-      st: { name: 'Stones (st)', symbol: 'st', factor: 6.35029318 }
-    },
-    temperature: {
-      C: { name: 'Celsius (°C)', symbol: '°C' },
-      F: { name: 'Fahrenheit (°F)', symbol: '°F' },
-      K: { name: 'Kelvin (K)', symbol: 'K' }
-    }
-  };
-
-  // State Management
-  let currentCategory = 'length';
-  let history = JSON.parse(localStorage.getItem('unit_converter_history') || '[]');
-
-  // Active elements
-  const fromValEl = document.getElementById('from-value');
-  const fromUnitEl = document.getElementById('from-unit');
-  const toValEl = document.getElementById('to-value');
-  const toUnitEl = document.getElementById('to-unit');
-  const formulaTextEl = document.getElementById('formula-text');
-  const mathDetailsEl = document.getElementById('math-details');
-  const swapBtnEl = document.getElementById('swap-btn');
-  const copyToastEl = document.getElementById('copy-toast');
-  const historyListEl = document.getElementById('history-list');
-  const historyEmptyEl = document.getElementById('history-empty');
-  const clearHistoryEl = document.getElementById('clear-history-btn');
-
-  // Initialize App on Page Load
-  window.addEventListener('DOMContentLoaded', () => {
-    switchCategory('length');
-    renderHistory();
-  });
-
-  // Category Switch Logic
-  function switchCategory(category) {
-    currentCategory = category;
-
-    // Toggle active styles on tabs
-    const categories = ['length', 'weight', 'temperature'];
-    categories.forEach(cat => {
-      const tab = document.getElementById(`tab-${cat}`);
-      if (cat === category) {
-        tab.className = "flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 transition-all duration-200 scale-[1.02] pointer-events-none";
-      } else {
-        tab.className = "flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200/40 shadow-sm transition-all duration-200";
-      }
-    });
-
-    // Re-populate dropdowns
-    populateDropdowns(category);
-
-    // Default configs for tabs
-    if (category === 'length') {
-      fromUnitEl.value = 'm';
-      toUnitEl.value = 'ft';
-    } else if (category === 'weight') {
-      fromUnitEl.value = 'kg';
-      toUnitEl.value = 'lb';
-    } else if (category === 'temperature') {
-      fromUnitEl.value = 'C';
-      toUnitEl.value = 'F';
-    }
-
-    // Reset value if empty
-    if (!fromValEl.value) {
-      fromValEl.value = 1;
-    }
-
-    calculate();
-  }
-
-  // Populate Dropdown Menus
-  function populateDropdowns(category) {
-    const list = conversionRates[category];
-    fromUnitEl.innerHTML = '';
-    toUnitEl.innerHTML = '';
-
-    for (const key in list) {
-      const optFrom = document.createElement('option');
-      optFrom.value = key;
-      optFrom.textContent = list[key].name;
-      fromUnitEl.appendChild(optFrom);
-
-      const optTo = document.createElement('option');
-      optTo.value = key;
-      optTo.textContent = list[key].name;
-      toUnitEl.appendChild(optTo);
-    }
-  }
-
-  // Swap Units Logic with Rotation Animation
-  function swapUnits() {
-    // Spark spin animation
-    swapBtnEl.classList.add('rotate-active');
-    setTimeout(() => {
-      swapBtnEl.classList.remove('rotate-active');
-    }, 450);
-
-    const temp = fromUnitEl.value;
-    fromUnitEl.value = toUnitEl.value;
-    toUnitEl.value = temp;
-
-    // If swapping is temperature, make sure calculation handles correctly
-    calculate();
-  }
-
-  // Real-Time Conversion Engine
-  function calculate() {
-    const val = parseFloat(fromValEl.value);
-    
-    if (isNaN(val)) {
-      toValEl.value = '';
-      formulaTextEl.textContent = 'Enter a valid number to start conversion';
-      mathDetailsEl.textContent = '';
-      return;
-    }
-
-    const fromUnit = fromUnitEl.value;
-    const toUnit = toUnitEl.value;
-    let result = 0;
-    let formulaDesc = '';
-    let mathDesc = '';
-
-    if (currentCategory === 'temperature') {
-      // Temperature conversions
-      if (fromUnit === toUnit) {
-        result = val;
-        formulaDesc = `1 ${conversionRates.temperature[fromUnit].name} = 1 ${conversionRates.temperature[toUnit].name}`;
-        mathDesc = `${val} = ${val}`;
-      } else {
-        // Source to Celsius
-        let tempInC;
-        if (fromUnit === 'C') {
-          tempInC = val;
-        } else if (fromUnit === 'F') {
-          tempInC = (val - 32) * 5 / 9;
-        } else if (fromUnit === 'K') {
-          tempInC = val - 273.15;
-        }
-
-        // Celsius to Target
-        if (toUnit === 'C') {
-          result = tempInC;
-        } else if (toUnit === 'F') {
-          result = (tempInC * 9 / 5) + 32;
-        } else if (toUnit === 'K') {
-          result = tempInC + 273.15;
-        }
-
-        // Generate clean temperature formula strings
-        if (fromUnit === 'C' && toUnit === 'F') {
-          formulaDesc = `Fahrenheit = (Celsius × 9/5) + 32`;
-          mathDesc = `(${val} × 1.8) + 32 = ${formatNumber(result)}`;
-        } else if (fromUnit === 'F' && toUnit === 'C') {
-          formulaDesc = `Celsius = (Fahrenheit - 32) × 5/9`;
-          mathDesc = `(${val} - 32) × 0.555 = ${formatNumber(result)}`;
-        } else if (fromUnit === 'C' && toUnit === 'K') {
-          formulaDesc = `Kelvin = Celsius + 273.15`;
-          mathDesc = `${val} + 273.15 = ${formatNumber(result)}`;
-        } else if (fromUnit === 'K' && toUnit === 'C') {
-          formulaDesc = `Celsius = Kelvin - 273.15`;
-          mathDesc = `${val} - 273.15 = ${formatNumber(result)}`;
-        } else if (fromUnit === 'F' && toUnit === 'K') {
-          formulaDesc = `Kelvin = (Fahrenheit - 32) × 5/9 + 273.15`;
-          mathDesc = `(${val} - 32) × 5/9 + 273.15 = ${formatNumber(result)}`;
-        } else if (fromUnit === 'K' && toUnit === 'F') {
-          formulaDesc = `Fahrenheit = (Kelvin - 273.15) × 9/5 + 32`;
-          mathDesc = `(${val} - 273.15) × 1.8 + 32 = ${formatNumber(result)}`;
-        }
-      }
-    } else {
-      // Linear conversions (Length & Weight)
-      const data = conversionRates[currentCategory];
-      const fromFactor = data[fromUnit].factor;
-      const toFactor = data[toUnit].factor;
-
-      // Base formula: (val * fromFactor) / toFactor
-      const inBaseUnit = val * fromFactor;
-      result = inBaseUnit / toFactor;
-
-      // Formula description
-      const rawRatio = fromFactor / toFactor;
-      const displayRatio = formatNumber(rawRatio, 6);
-      formulaDesc = `1 ${data[fromUnit].symbol} ≈ ${displayRatio} ${data[toUnit].symbol}`;
-      mathDesc = `${val} × ${displayRatio} = ${formatNumber(result)}`;
-    }
-
-    // Output formatted result
-    toValEl.value = formatNumber(result);
-    formulaTextEl.textContent = formulaDesc;
-    mathDetailsEl.textContent = mathDesc;
-
-    // Proactively save to conversion history (debounce simple key presses)
-    debounceSaveToHistory(val, fromUnit, result, toUnit);
-  }
-
-  // Format Float numbers cleanly
-  function formatNumber(num, maxDecimals = 6) {
-    if (num === 0) return 0;
-    const absNum = Math.abs(num);
-    
-    // Choose appropriate decimal precision dynamically
-    let precision = maxDecimals;
-    if (absNum >= 1000) precision = 2;
-    else if (absNum >= 100) precision = 3;
-    else if (absNum >= 1) precision = 4;
-    else if (absNum >= 0.0001) precision = 6;
-    else precision = 8;
-
-    // Parse floats and remove trailing zeros
-    return parseFloat(num.toFixed(precision));
-  }
-
-  // History Debounce to prevent spelling triggers
-  let saveHistoryTimeout;
-  function debounceSaveToHistory(val, fromUnit, result, toUnit) {
-    clearTimeout(saveHistoryTimeout);
-    saveHistoryTimeout = setTimeout(() => {
-      saveToHistory(val, fromUnit, result, toUnit);
-    }, 1500); // Wait 1.5 seconds after user stops interacting to commit to history
-  }
-
-  // Save conversion event into local storage
-  function saveToHistory(val, fromUnit, result, toUnit) {
-    const list = conversionRates[currentCategory];
-    const categoryName = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
-    
-    const entry = {
-      id: Date.now(),
-      category: currentCategory,
-      categoryLabel: categoryName,
-      val: val,
-      fromSymbol: list[fromUnit].symbol,
-      fromUnit: fromUnit,
-      result: result,
-      toSymbol: list[toUnit].symbol,
-      toUnit: toUnit
-    };
-
-    // Filter duplicates
-    history = history.filter(h => !(h.category === entry.category && h.val === entry.val && h.fromUnit === entry.fromUnit && h.toUnit === entry.toUnit));
-
-    // Prepend and limit size to 5 items
-    history.unshift(entry);
-    if (history.length > 5) history.pop();
-
-    localStorage.setItem('unit_converter_history', JSON.stringify(history));
-    renderHistory();
-  }
-
-  // Render recent conversions UI
-  function renderHistory() {
-    historyListEl.innerHTML = '';
-    if (history.length === 0) {
-      historyEmptyEl.classList.remove('hidden');
-      clearHistoryEl.classList.add('hidden');
-      return;
-    }
-
-    historyEmptyEl.classList.add('hidden');
-    clearHistoryEl.classList.remove('hidden');
-
-    history.forEach(item => {
-      const badge = document.createElement('button');
-      badge.className = "text-xs font-semibold py-2 px-3.5 bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 rounded-xl text-slate-600 hover:text-blue-700 shadow-sm flex items-center transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0";
-      badge.innerHTML = `
-        <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>
-        <span class="font-bold mr-1 text-slate-800">${item.categoryLabel}:</span>
-        <span>${item.val} ${item.fromSymbol} → ${formatNumber(item.result)} ${item.toSymbol}</span>
-      `;
-      badge.onclick = () => loadHistoryItem(item);
-      historyListEl.appendChild(badge);
-    });
-  }
-
-  // Load selected history block
-  function loadHistoryItem(item) {
-    currentCategory = item.category;
-    switchCategory(item.category);
-    fromValEl.value = item.val;
-    fromUnitEl.value = item.fromUnit;
-    toUnitEl.value = item.toUnit;
-    
-    // Trigger smooth transition scroll to calculator
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
-    calculate();
-  }
-
-  // Delete all local history
-  function clearHistory() {
-    history = [];
-    localStorage.removeItem('unit_converter_history');
-    renderHistory();
-  }
-
-  // Copy calculations to clipboard with animation
-  function copyResult() {
-    const textToCopy = `${fromValEl.value} ${conversionRates[currentCategory][fromUnitEl.value].symbol} = ${toValEl.value} ${conversionRates[currentCategory][toUnitEl.value].symbol}`;
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      // Toggle Toast
-      copyToastEl.style.opacity = '1';
-      setTimeout(() => {
-        copyToastEl.style.opacity = '0';
-      }, 1500);
-    }).catch(err => {
-      console.error('Failed to copy to clipboard', err);
-    });
-  }
-
-  // Smooth Category Scroll Links
-  function triggerCategoryScroll(category) {
-    switchCategory(category);
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // Click on Popular Conversion in footer
-  function triggerPopularConversion(category, fromUnit, toUnit, defaultVal) {
-    switchCategory(category);
-    fromUnitEl.value = fromUnit;
-    toUnitEl.value = toUnit;
-    if (defaultVal > 0) {
-      fromValEl.value = defaultVal;
-    }
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
-    calculate();
-  }
-</script>
-
+<script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>
