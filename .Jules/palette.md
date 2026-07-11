@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility for Grouped Controls
+**Learning:** When grouping interactive elements (like a value input and a unit select dropdown) under a single visual label (e.g., "From" or "To"), providing individual `aria-label` attributes to the inner elements (e.g., the select dropdown) is essential to ensure they are fully accessible and properly announced by screen readers.
+**Action:** Always verify that every interactive element within a grouped input has an explicit accessible name, even if the parent container has a visual label.
