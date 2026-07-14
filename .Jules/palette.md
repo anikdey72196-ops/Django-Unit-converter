@@ -1,0 +1,3 @@
+## 2026-07-14 - ARIA Labels for Icon-Only Buttons and Grouped Inputs
+**Learning:** When grouping interactive elements (like a value input and a unit select dropdown) under a single visual label, and when using icon-only buttons, it is critical to provide individual `aria-label` attributes to ensure they are fully accessible and their purpose is announced by screen readers.
+**Action:** Always verify that interactive elements, particularly icon-only buttons and `<select>` dropdowns without explicit `<label>` tags, have descriptive `aria-label` attributes added.
