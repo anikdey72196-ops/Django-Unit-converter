@@ -357,6 +357,10 @@
   function switchCategory(category) {
     currentCategory = category;
 
+    // Clear DOM cache when category changes
+    lastFormulaDesc = '';
+    lastMathDesc = '';
+
     // Toggle active styles on tabs
     const categories = ['length', 'weight', 'temperature'];
     categories.forEach(cat => {
@@ -425,6 +429,10 @@
     // If swapping is temperature, make sure calculation handles correctly
     calculate();
   }
+
+  // Cache for DOM updates to prevent layout thrashing
+  let lastFormulaDesc = '';
+  let lastMathDesc = '';
 
   // Real-Time Conversion Engine
   function calculate() {
@@ -509,8 +517,16 @@
 
     // Output formatted result
     toValEl.value = formatNumber(result);
-    formulaTextEl.textContent = formulaDesc;
-    mathDetailsEl.textContent = mathDesc;
+
+    // Performance: Prevent redundant DOM updates on every keystroke
+    if (formulaDesc !== lastFormulaDesc) {
+      formulaTextEl.textContent = formulaDesc;
+      lastFormulaDesc = formulaDesc;
+    }
+    if (mathDesc !== lastMathDesc) {
+      mathDetailsEl.textContent = mathDesc;
+      lastMathDesc = mathDesc;
+    }
 
     // Proactively save to conversion history (debounce simple key presses)
     debounceSaveToHistory(val, fromUnit, result, toUnit);
