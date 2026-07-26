@@ -391,23 +391,23 @@
     calculate();
   }
 
+  // Cache for dropdown HTML to prevent redundant DOM element creation on tab switch
+  const dropdownCache = {};
+
   // Populate Dropdown Menus
   function populateDropdowns(category) {
-    const list = conversionRates[category];
-    fromUnitEl.innerHTML = '';
-    toUnitEl.innerHTML = '';
-
-    for (const key in list) {
-      const optFrom = document.createElement('option');
-      optFrom.value = key;
-      optFrom.textContent = list[key].name;
-      fromUnitEl.appendChild(optFrom);
-
-      const optTo = document.createElement('option');
-      optTo.value = key;
-      optTo.textContent = list[key].name;
-      toUnitEl.appendChild(optTo);
+    if (!dropdownCache[category]) {
+      const list = conversionRates[category];
+      let optionsHtml = '';
+      for (const key in list) {
+        optionsHtml += `<option value="${key}">${list[key].name}</option>`;
+      }
+      dropdownCache[category] = optionsHtml;
     }
+
+    // Batch update using innerHTML instead of individual appendChild calls
+    fromUnitEl.innerHTML = dropdownCache[category];
+    toUnitEl.innerHTML = dropdownCache[category];
   }
 
   // Swap Units Logic with Rotation Animation
