@@ -148,13 +148,13 @@
         <label for="from-value" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">From</label>
         <div class="flex flex-col gap-3">
           <input type="number" id="from-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none placeholder-slate-300" value="1" step="any" oninput="calculate()">
-          <select id="from-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <select id="from-unit" aria-label="Select unit to convert from" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
       <!-- Swap Action Column -->
       <div class="lg:col-span-1 flex justify-center py-2 lg:py-0">
-        <button id="swap-btn" aria-label="Swap units" class="w-12 h-12 bg-white hover:bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center shadow-md text-slate-500 hover:text-blue-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 rotate-effect" onclick="swapUnits()">
+        <button id="swap-btn" aria-label="Swap units" title="Swap units" class="w-12 h-12 bg-white hover:bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center shadow-md text-slate-500 hover:text-blue-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 rotate-effect" onclick="swapUnits()">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 8V4m0 16l-4-4m4 4l4-4"/>
           </svg>
@@ -177,7 +177,7 @@
               <span id="copy-toast" class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2.5 py-1 bg-slate-900 text-white text-xs font-bold rounded shadow-lg opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap">Copied!</span>
             </button>
           </div>
-          <select id="to-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <select id="to-unit" aria-label="Select unit to convert to" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
