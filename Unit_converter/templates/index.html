@@ -394,23 +394,24 @@
     calculate();
   }
 
+  // Cache for dropdown HTML to prevent redundant element creation on category switch
+  const dropdownCache = {};
+
   // Populate Dropdown Menus
   function populateDropdowns(category) {
-    const list = conversionRates[category];
-    fromUnitEl.innerHTML = '';
-    toUnitEl.innerHTML = '';
-
-    for (const key in list) {
-      const optFrom = document.createElement('option');
-      optFrom.value = key;
-      optFrom.textContent = list[key].name;
-      fromUnitEl.appendChild(optFrom);
-
-      const optTo = document.createElement('option');
-      optTo.value = key;
-      optTo.textContent = list[key].name;
-      toUnitEl.appendChild(optTo);
+    if (!dropdownCache[category]) {
+      const list = conversionRates[category];
+      let html = '';
+      for (const key in list) {
+        // ⚡ Bolt Optimization: Use string building instead of createElement for faster DOM insertion
+        html += `<option value="${key}">${list[key].name}</option>`;
+      }
+      dropdownCache[category] = html;
     }
+
+    // ⚡ Bolt Optimization: Reuse cached HTML string to prevent redundant DOM operations
+    fromUnitEl.innerHTML = dropdownCache[category];
+    toUnitEl.innerHTML = dropdownCache[category];
   }
 
   // Swap Units Logic with Rotation Animation
