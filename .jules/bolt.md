@@ -1,0 +1,3 @@
+## 2024-03-24 - Prevent Layout Thrashing in Unit Converter
+**Learning:** In a heavily interactive client-side application where DOM changes trigger dependent recalculations (like `calculate()` updating multiple DOM nodes), calling these functions during state transitions (like switching categories or loading history) causes layout thrashing and redundant calculations.
+**Action:** Implemented a state machine approach in `calculate()` using `lastCalcState` to early-return if inputs haven't changed, and added a `skipCalculate` flag to `switchCategory` to prevent intermediate calculations during batch updates.
