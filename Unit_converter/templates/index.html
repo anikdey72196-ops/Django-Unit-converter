@@ -148,7 +148,7 @@
         <label for="from-value" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">From</label>
         <div class="flex flex-col gap-3">
           <input type="number" id="from-value" class="w-full text-3xl font-extrabold text-slate-900 border-none bg-transparent p-0 focus:ring-0 focus:outline-none placeholder-slate-300" value="1" step="any" oninput="calculate()">
-          <select id="from-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <select id="from-unit" aria-label="Source unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
@@ -177,7 +177,7 @@
               <span id="copy-toast" class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2.5 py-1 bg-slate-900 text-white text-xs font-bold rounded shadow-lg opacity-0 transition-opacity duration-200 pointer-events-none whitespace-nowrap">Copied!</span>
             </button>
           </div>
-          <select id="to-unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
+          <select id="to-unit" aria-label="Target unit" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors" onchange="calculate()"></select>
         </div>
       </div>
 
