@@ -357,7 +357,7 @@
   });
 
   // Category Switch Logic
-  function switchCategory(category) {
+  function switchCategory(category, skipCalculate = false) {
     currentCategory = category;
 
     // Toggle active styles on tabs
@@ -391,7 +391,9 @@
       fromValEl.value = 1;
     }
 
-    calculate();
+    if (!skipCalculate) {
+      calculate();
+    }
   }
 
   // Cache for dropdown HTML to prevent redundant element creation on category switch
@@ -431,6 +433,7 @@
   }
 
   // Real-Time Conversion Engine
+  let lastCalcState = '';
   function calculate() {
     const val = parseFloat(fromValEl.value);
     
@@ -438,11 +441,18 @@
       toValEl.value = '';
       formulaTextEl.textContent = 'Enter a valid number to start conversion';
       mathDetailsEl.textContent = '';
+      lastCalcState = '';
       return;
     }
 
     const fromUnit = fromUnitEl.value;
     const toUnit = toUnitEl.value;
+
+    // ⚡ Bolt Optimization: Add early return to skip redundant calculations and DOM updates
+    const currentState = `${currentCategory}:${val}:${fromUnit}:${toUnit}`;
+    if (currentState === lastCalcState) return;
+    lastCalcState = currentState;
+
     let result = 0;
     let formulaDesc = '';
     let mathDesc = '';
@@ -602,7 +612,8 @@
   // Load selected history block
   function loadHistoryItem(item) {
     currentCategory = item.category;
-    switchCategory(item.category);
+    // ⚡ Bolt Optimization: Skip intermediate calculation to prevent layout thrashing
+    switchCategory(item.category, true);
     fromValEl.value = item.val;
     fromUnitEl.value = item.fromUnit;
     toUnitEl.value = item.toUnit;
@@ -641,7 +652,8 @@
 
   // Click on Popular Conversion in footer
   function triggerPopularConversion(category, fromUnit, toUnit, defaultVal) {
-    switchCategory(category);
+    // ⚡ Bolt Optimization: Skip intermediate calculation to prevent layout thrashing
+    switchCategory(category, true);
     fromUnitEl.value = fromUnit;
     toUnitEl.value = toUnit;
     if (defaultVal > 0) {
