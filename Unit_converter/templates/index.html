@@ -349,6 +349,13 @@
   const historyListEl = document.getElementById('history-list');
   const historyEmptyEl = document.getElementById('history-empty');
   const clearHistoryEl = document.getElementById('clear-history-btn');
+  // ⚡ Bolt Optimization: Cache frequently accessed elements to avoid redundant tree traversals
+  const converterSectionEl = document.getElementById('converter-section');
+  const tabElements = {
+    length: document.getElementById('tab-length'),
+    weight: document.getElementById('tab-weight'),
+    temperature: document.getElementById('tab-temperature')
+  };
 
   // Initialize App on Page Load
   window.addEventListener('DOMContentLoaded', () => {
@@ -363,7 +370,8 @@
     // Toggle active styles on tabs
     const categories = ['length', 'weight', 'temperature'];
     categories.forEach(cat => {
-      const tab = document.getElementById(`tab-${cat}`);
+      // ⚡ Bolt Optimization: Use cached tab element
+      const tab = tabElements[cat];
       if (cat === category) {
         tab.className = "flex-1 min-w-[100px] flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 transition-all duration-200 scale-[1.02] pointer-events-none";
       } else {
@@ -586,6 +594,9 @@
     historyEmptyEl.classList.add('hidden');
     clearHistoryEl.classList.remove('hidden');
 
+    // ⚡ Bolt Optimization: Use DocumentFragment to batch DOM insertions and prevent multiple reflows
+    const fragment = document.createDocumentFragment();
+
     history.forEach(item => {
       const badge = document.createElement('button');
       badge.className = "text-xs font-semibold py-2 px-3.5 bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 rounded-xl text-slate-600 hover:text-blue-700 shadow-sm flex items-center transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0";
@@ -595,8 +606,10 @@
         <span>${item.val} ${item.fromSymbol} → ${formatNumber(item.result)} ${item.toSymbol}</span>
       `;
       badge.onclick = () => loadHistoryItem(item);
-      historyListEl.appendChild(badge);
+      fragment.appendChild(badge);
     });
+
+    historyListEl.appendChild(fragment);
   }
 
   // Load selected history block
@@ -608,7 +621,7 @@
     toUnitEl.value = item.toUnit;
     
     // Trigger smooth transition scroll to calculator
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    converterSectionEl.scrollIntoView({ behavior: 'smooth' });
     calculate();
   }
 
@@ -636,7 +649,7 @@
   // Smooth Category Scroll Links
   function triggerCategoryScroll(category) {
     switchCategory(category);
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    converterSectionEl.scrollIntoView({ behavior: 'smooth' });
   }
 
   // Click on Popular Conversion in footer
@@ -647,7 +660,7 @@
     if (defaultVal > 0) {
       fromValEl.value = defaultVal;
     }
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    converterSectionEl.scrollIntoView({ behavior: 'smooth' });
     calculate();
   }
 </script>
