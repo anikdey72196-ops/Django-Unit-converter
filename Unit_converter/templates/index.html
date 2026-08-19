@@ -357,10 +357,13 @@
   });
 
   // Category Switch Logic
-  function switchCategory(category) {
+  function switchCategory(category, preventCalculate = false) {
+    // ⚡ Bolt Optimization: Prevent redundant DOM recreation if category is already active
+    const isSameCategory = currentCategory === category && fromUnitEl.options.length > 0;
     currentCategory = category;
 
-    // Toggle active styles on tabs
+    if (!isSameCategory) {
+      // Toggle active styles on tabs
     const categories = ['length', 'weight', 'temperature'];
     categories.forEach(cat => {
       const tab = document.getElementById(`tab-${cat}`);
@@ -385,13 +388,17 @@
       fromUnitEl.value = 'C';
       toUnitEl.value = 'F';
     }
+    }
 
     // Reset value if empty
     if (!fromValEl.value) {
       fromValEl.value = 1;
     }
 
-    calculate();
+    // ⚡ Bolt Optimization: Skip immediate calculation if caller will provide values and calculate next
+    if (!preventCalculate) {
+      calculate();
+    }
   }
 
   // Cache for dropdown HTML to prevent redundant element creation on category switch
@@ -576,8 +583,8 @@
 
   // Render recent conversions UI
   function renderHistory() {
-    historyListEl.innerHTML = '';
     if (history.length === 0) {
+      historyListEl.innerHTML = '';
       historyEmptyEl.classList.remove('hidden');
       clearHistoryEl.classList.add('hidden');
       return;
@@ -586,23 +593,32 @@
     historyEmptyEl.classList.add('hidden');
     clearHistoryEl.classList.remove('hidden');
 
-    history.forEach(item => {
-      const badge = document.createElement('button');
-      badge.className = "text-xs font-semibold py-2 px-3.5 bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 rounded-xl text-slate-600 hover:text-blue-700 shadow-sm flex items-center transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0";
-      badge.innerHTML = `
-        <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>
-        <span class="font-bold mr-1 text-slate-800">${item.categoryLabel}:</span>
-        <span>${item.val} ${item.fromSymbol} → ${formatNumber(item.result)} ${item.toSymbol}</span>
+    // ⚡ Bolt Optimization: Build HTML string in memory and use Event Delegation instead of multiple DOM insertions and event listeners
+    let html = '';
+    history.forEach((item, index) => {
+      html += `
+        <button data-index="${index}" class="history-item-btn text-xs font-semibold py-2 px-3.5 bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 rounded-xl text-slate-600 hover:text-blue-700 shadow-sm flex items-center transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 mr-2 pointer-events-none"></span>
+          <span class="font-bold mr-1 text-slate-800 pointer-events-none">${item.categoryLabel}:</span>
+          <span class="pointer-events-none">${item.val} ${item.fromSymbol} → ${formatNumber(item.result)} ${item.toSymbol}</span>
+        </button>
       `;
-      badge.onclick = () => loadHistoryItem(item);
-      historyListEl.appendChild(badge);
     });
+    historyListEl.innerHTML = html;
   }
+
+  // ⚡ Bolt Optimization: Use event delegation for history items to reduce memory overhead
+  historyListEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.history-item-btn');
+    if (btn) {
+      const index = parseInt(btn.getAttribute('data-index'), 10);
+      loadHistoryItem(history[index]);
+    }
+  });
 
   // Load selected history block
   function loadHistoryItem(item) {
-    currentCategory = item.category;
-    switchCategory(item.category);
+    switchCategory(item.category, true);
     fromValEl.value = item.val;
     fromUnitEl.value = item.fromUnit;
     toUnitEl.value = item.toUnit;
@@ -641,7 +657,7 @@
 
   // Click on Popular Conversion in footer
   function triggerPopularConversion(category, fromUnit, toUnit, defaultVal) {
-    switchCategory(category);
+    switchCategory(category, true);
     fromUnitEl.value = fromUnit;
     toUnitEl.value = toUnit;
     if (defaultVal > 0) {
