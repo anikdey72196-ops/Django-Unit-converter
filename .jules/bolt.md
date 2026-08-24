@@ -1,0 +1,3 @@
+## 2026-06-25 - Enabling Request/Response Compression
+**Learning:** For a single-page application heavily relying on text-based assets (HTML structure containing embedded CSS and JS logic), missing standard payload compression is a direct performance bottleneck that degrades initial load times over network transfers.
+**Action:** When acting as Bolt optimizing a Django backend without a reverse proxy in the stack yet, explicitly enable `django.middleware.gzip.GZipMiddleware` at the top of the middleware chain (right after security) to ensure the HTML document payload is compressed, reducing bytes over the wire.
