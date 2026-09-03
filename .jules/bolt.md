@@ -1,0 +1,3 @@
+## 2024-09-03 - Gzip Middleware optimization for Django Single-Page Apps
+**Learning:** For Django applications that primarily serve large static HTML pages with embedded JavaScript (like this Vanilla JS Single-Page App), adding `django.middleware.gzip.GZipMiddleware` is a highly effective, measurable optimization. Because the entire application logic, templates, and text-based assets are delivered upfront in a single payload, Gzip compression drastically reduces the initial transfer size and time-to-interactive without requiring any frontend code refactoring or external build tools.
+**Action:** When optimizing Django monoliths or single-page apps without a complex frontend build pipeline, check `MIDDLEWARE` in `settings.py` first to ensure Gzip compression is enabled.
