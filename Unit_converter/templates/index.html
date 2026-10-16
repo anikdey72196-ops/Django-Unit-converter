@@ -599,6 +599,11 @@
     });
   }
 
+  // Helper to scroll to converter section
+  function scrollToConverter() {
+    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
   // Load selected history block
   function loadHistoryItem(item) {
     currentCategory = item.category;
@@ -608,7 +613,7 @@
     toUnitEl.value = item.toUnit;
     
     // Trigger smooth transition scroll to calculator
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    scrollToConverter();
     calculate();
   }
 
@@ -636,7 +641,7 @@
   // Smooth Category Scroll Links
   function triggerCategoryScroll(category) {
     switchCategory(category);
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    scrollToConverter();
   }
 
   // Click on Popular Conversion in footer
@@ -647,7 +652,7 @@
     if (defaultVal > 0) {
       fromValEl.value = defaultVal;
     }
-    document.getElementById('converter-section').scrollIntoView({ behavior: 'smooth' });
+    scrollToConverter();
     calculate();
   }
 </script>
